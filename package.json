@@ -1,0 +1,14 @@
+{
+  "name": "sreon-browser",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Cross-platform Tauri shell for Sreon Browser",
+  "scripts": {
+    "tauri": "tauri",
+    "build:deb": "make build/bin/sprfst && tauri build --bundles deb",
+    "build:windows": "tauri build --bundles nsis"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.8.4"
+  }
+}
