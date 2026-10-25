@@ -439,11 +439,13 @@ const SREON_JS = r"""/* Sreon page bridge. Pages are drawn by the SPRFST engine;
   var S = window.sreon = {};
   var VIEW = document.documentElement.getAttribute("data-view") || "";
   var native = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.sreon;
+  var tauriHost = window.sreonHost || (window.parent !== window ? window.parent.sreonHost : null);
   var timers = {};
 
   S.call = function (op, data) {
-    if (!native) return Promise.resolve(null);
-    return native.postMessage({ op: op, view: VIEW, data: data || {} });
+    if (native) return native.postMessage({ op: op, view: VIEW, data: data || {} });
+    if (tauriHost && typeof tauriHost.call === "function") return tauriHost.call(op, VIEW, data || {});
+    return Promise.resolve(null);
   };
   S.toast = function (t) {
     var el = document.querySelector(".toast");

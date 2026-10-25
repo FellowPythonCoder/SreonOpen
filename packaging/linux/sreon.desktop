@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Sreon
+Comment=Open the Sreon graphical interface
+Exec=/usr/bin/sreon-gui
+Icon=sreon
+Terminal=false
+Categories=Network;WebBrowser;
+StartupNotify=true
